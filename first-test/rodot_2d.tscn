@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3xckh76u4edw"]
+
+[ext_resource type="Texture2D" uid="uid://ddfjpgt0bccu4" path="res://icon.svg" id="1_of6wg"]
+[ext_resource type="Script" uid="uid://dcmmu50ejq2rt" path="res://rodot_2d.gd" id="1_pd848"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yl5l"]
+size = Vector2(113, 112)
+
+[node name="RogotBody2D" type="CharacterBody2D"]
+script = ExtResource("1_pd848")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(331, 182)
+texture = ExtResource("1_of6wg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(331, 181)
+shape = SubResource("RectangleShape2D_8yl5l")
