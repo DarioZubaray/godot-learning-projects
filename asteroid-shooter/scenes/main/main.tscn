@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://cuprbq600w8r8"]
+
+[ext_resource type="Texture2D" uid="uid://cymnql4of0twx" path="res://assets/sprites/background.png" id="1_hyk8p"]
+[ext_resource type="PackedScene" uid="uid://bcvtlbaxm1gjp" path="res://scenes/spawners/asteroid_spawner.tscn" id="3_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://u57j8cw0hyvx" path="res://scenes/player/player.tscn" id="6_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://bepttmp7eelca" path="res://scenes/ui/hud/hud.tscn" id="7_hujxm"]
+[ext_resource type="PackedScene" uid="uid://cu6jk5s77dg6y" path="res://scenes/spawners/power_up_spawner.tscn" id="7_yyfjg"]
+[ext_resource type="PackedScene" uid="uid://bfyi51n01aso3" path="res://scenes/ui/game_over/game_over_ui.tscn" id="8_yyfjg"]
+[ext_resource type="Script" uid="uid://tu6rkmmu0rw1" path="res://scenes/main/game_over_area.gd" id="9_b1x3f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ow5a4"]
+size = Vector2(1151, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hujxm"]
+size = Vector2(20, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8run"]
+size = Vector2(20, 665)
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(565, 305)
+texture = ExtResource("1_hyk8p")
+
+[node name="Player" parent="." instance=ExtResource("6_ow5a4")]
+position = Vector2(90, 330)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, -10)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2(575.5, 0)
+shape = SubResource("RectangleShape2D_ow5a4")
+
+[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 658)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+position = Vector2(575.5, 0)
+shape = SubResource("RectangleShape2D_ow5a4")
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(1, 10)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(0, 314)
+shape = SubResource("RectangleShape2D_hujxm")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(1153, 10)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(0, 314)
+shape = SubResource("RectangleShape2D_hujxm")
+
+[node name="PowerUpSpawner" parent="." instance=ExtResource("7_yyfjg")]
+
+[node name="AsteroidSpawner" parent="." instance=ExtResource("3_ow5a4")]
+position = Vector2(1350, 320)
+
+[node name="GameOverTrigger" type="Area2D" parent="."]
+position = Vector2(-24, 13)
+script = ExtResource("9_b1x3f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverTrigger"]
+position = Vector2(0, 319.5)
+shape = SubResource("RectangleShape2D_a8run")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UILayer" instance=ExtResource("7_hujxm")]
+metadata/_edit_lock_ = true
+
+[node name="GameOverUI" parent="UILayer" instance=ExtResource("8_yyfjg")]
+visible = false
+
+[connection signal="area_entered" from="GameOverTrigger" to="GameOverTrigger" method="_on_area_entered"]

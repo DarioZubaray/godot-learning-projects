@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://lyx62w7mlr6q"]
+
+[ext_resource type="Texture2D" uid="uid://bp2uar47q8fg4" path="res://assets/sprites/rock-medium.png" id="1_5f0el"]
+[ext_resource type="Script" uid="uid://b1dciimbp7rdq" path="res://scenes/asteroids/asteroid.gd" id="1_nnmk3"]
+[ext_resource type="PackedScene" uid="uid://d1aoj13nt5o0y" path="res://scenes/particles/explosion.tscn" id="2_f8a32"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nnmk3"]
+radius = 51.0
+
+[node name="MediumAsteroid" type="Area2D" groups=["asteroids"]]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_nnmk3")
+min_speed = 250.0
+max_speed = 330.0
+min_rotation = 180.0
+max_rotation = -180.0
+explosion_scene = ExtResource("2_f8a32")
+points = 10
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5f0el")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 0)
+shape = SubResource("CircleShape2D_nnmk3")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

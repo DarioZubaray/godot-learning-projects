@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfyi51n01aso3"]
+
+[ext_resource type="Script" uid="uid://drgi7sguttl5a" path="res://scenes/ui/game_over/game_over_ui.gd" id="1_etkqh"]
+[ext_resource type="LabelSettings" uid="uid://ddsgw5lebhytc" path="res://resources/zyzol_orange_70.tres" id="1_ijods"]
+[ext_resource type="LabelSettings" uid="uid://bx32n18b8l8w6" path="res://resources/zyzol_white_28.tres" id="2_etkqh"]
+[ext_resource type="FontFile" uid="uid://cd4fts5yj7khf" path="res://assets/fonts/Zyzol.otf" id="3_8e0cv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gqdde"]
+font = ExtResource("3_8e0cv")
+font_color = Color(1, 0.42352942, 0.3764706, 0.7254902)
+
+[node name="GameOverUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_etkqh")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GameOverLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = ExtResource("1_ijods")
+
+[node name="PressSpaceLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "Press space to restart"
+label_settings = ExtResource("2_etkqh")
+
+[node name="ScoreLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "Your score: 1000"
+label_settings = SubResource("LabelSettings_gqdde")
