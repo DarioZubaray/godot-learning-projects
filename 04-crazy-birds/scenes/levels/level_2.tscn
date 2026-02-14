@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://fvngdwuxpnau"]
+
+[ext_resource type="PackedScene" uid="uid://cqnxpcg64vsi2" path="res://scenes/levels/level.tscn" id="1_j2425"]
+[ext_resource type="PackedScene" uid="uid://ts4qvth3h2hg" path="res://scenes/enemy/enemy.tscn" id="2_ra442"]
+[ext_resource type="PackedScene" uid="uid://bekl45u8goam1" path="res://scenes/crate/crate.tscn" id="3_fiq81"]
+
+[node name="Level2" instance=ExtResource("1_j2425")]
+
+[node name="Enemy1" parent="Enemies" index="0" instance=ExtResource("2_ra442")]
+position = Vector2(1192, 928)
+
+[node name="Enemy2" parent="Enemies" index="1" instance=ExtResource("2_ra442")]
+position = Vector2(1296, 736)
+
+[node name="Enemy3" parent="Enemies" index="2" instance=ExtResource("2_ra442")]
+position = Vector2(1088, 736)
+
+[node name="Crate1" parent="Crates" index="0" instance=ExtResource("3_fiq81")]
+position = Vector2(1296, 920)
+
+[node name="Crate2" parent="Crates" index="1" instance=ExtResource("3_fiq81")]
+position = Vector2(1080, 920)
+
+[node name="Crate3" parent="Crates" index="2" instance=ExtResource("3_fiq81")]
+position = Vector2(1080, 824)
+
+[node name="Crate4" parent="Crates" index="3" instance=ExtResource("3_fiq81")]
+position = Vector2(1296, 824)
