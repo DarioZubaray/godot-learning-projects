@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://ts4qvth3h2hg"]
+
+[ext_resource type="Texture2D" uid="uid://cfrb4ox652ohe" path="res://sprites/monster.png" id="1_4a83h"]
+[ext_resource type="Script" uid="uid://d0jysabw17461" path="res://scenes/enemy/enemy.gd" id="1_a3pup"]
+[ext_resource type="PackedScene" uid="uid://clmm2supqpbe0" path="res://scenes/explosion/explosion.tscn" id="2_40wdo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3pup"]
+atlas = ExtResource("1_4a83h")
+region = Rect2(0, 0, 73, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40wdo"]
+atlas = ExtResource("1_4a83h")
+region = Rect2(73, 0, 73, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tjssy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3pup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40wdo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gl05p"]
+size = Vector2(59, 73)
+
+[node name="Enemy" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_a3pup")
+explosion_scene = ExtResource("2_40wdo")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tjssy")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4.5)
+shape = SubResource("RectangleShape2D_gl05p")

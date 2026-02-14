@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://cqnxpcg64vsi2"]
+
+[ext_resource type="Texture2D" uid="uid://mxxr00m1c1pe" path="res://sprites/bg.png" id="1_bovvr"]
+[ext_resource type="Script" uid="uid://bt3cvffskg72b" path="res://scenes/levels/level.gd" id="1_d4w6o"]
+[ext_resource type="Texture2D" uid="uid://crmkrest27csx" path="res://sprites/ground.png" id="2_b2cq8"]
+[ext_resource type="PackedScene" uid="uid://kv8xodshjf0n" path="res://scenes/player/player.tscn" id="4_xb4v1"]
+[ext_resource type="Script" uid="uid://dwd1oujrrcc32" path="res://scenes/levels/player_spawner.gd" id="5_d4w6o"]
+[ext_resource type="Script" uid="uid://di7mthrhqnkys" path="res://scenes/levels/level_completed_timer.gd" id="7_icy5c"]
+[ext_resource type="Script" uid="uid://kbt4dbmw0ihp" path="res://scenes/levels/follow_camera.gd" id="7_mbbpy"]
+[ext_resource type="PackedScene" uid="uid://skix048bmpsn" path="res://scenes/ui/hud/hud.tscn" id="7_ouxo3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb4v1"]
+size = Vector2(2398, 162)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_d4w6o")
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Environment"]
+position = Vector2(895, 524)
+texture = ExtResource("1_bovvr")
+metadata/_edit_lock_ = true
+
+[node name="Background2" type="Sprite2D" parent="Environment"]
+position = Vector2(3295, 524)
+texture = ExtResource("1_bovvr")
+metadata/_edit_lock_ = true
+
+[node name="Ground" type="StaticBody2D" parent="Environment"]
+position = Vector2(895, 1046)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Ground"]
+texture = ExtResource("2_b2cq8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Ground"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_xb4v1")
+
+[node name="Ground2" type="StaticBody2D" parent="Environment"]
+position = Vector2(3295, 1046)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Ground2"]
+texture = ExtResource("2_b2cq8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Ground2"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_xb4v1")
+
+[node name="PlayerSpawner" type="Marker2D" parent="."]
+position = Vector2(315, 624)
+script = ExtResource("5_d4w6o")
+player_scene = ExtResource("4_xb4v1")
+
+[node name="FollowCamera" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("7_mbbpy")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Crates" type="Node2D" parent="."]
+
+[node name="LevelCompletedTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+script = ExtResource("7_icy5c")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UILayer" instance=ExtResource("7_ouxo3")]
+metadata/_edit_lock_ = true
+
+[connection signal="player_spawned" from="PlayerSpawner" to="FollowCamera" method="_on_player_spawner_player_spawned"]
+[connection signal="timeout" from="LevelCompletedTimer" to="LevelCompletedTimer" method="_on_timeout"]
