@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4q8ey67byxhr"]
+
+[ext_resource type="Texture2D" uid="uid://idinx04u6e08" path="res://assets/sprites/other/spikes.png" id="1_x0y1a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7bup"]
+size = Vector2(30, 6)
+
+[node name="Spikes" type="Area2D" groups=["traps"]]
+collision_layer = 16
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_x0y1a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_k7bup")
