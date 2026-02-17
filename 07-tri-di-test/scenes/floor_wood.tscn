@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnvrhfdab5ypy"]
+
+[ext_resource type="PackedScene" uid="uid://cjsskkn45h4wv" path="res://models/building/floor_wood.glb" id="1_i0wpl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ouc7c"]
+size = Vector3(4, 0.2, 4)
+
+[node name="FloorWood" type="StaticBody3D"]
+
+[node name="floor_wood" parent="." instance=ExtResource("1_i0wpl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3527613e-08, 0)
+shape = SubResource("BoxShape3D_ouc7c")
