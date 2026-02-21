@@ -13,6 +13,7 @@ Courses:
 
 Tutorials:
 
+- Indierama: [GODOT para PRINCIPIANTES! (Pong)](https://www.youtube.com/watch?v=YCTPNRw1EXo)
 - Brackeys: [How to make a Video Game - Godot Beginner Tutorial](https://www.youtube.com/watch?v=LOhfqjmasi0)
 - Brackeys: [How to make 3D Games in Godot](https://www.youtube.com/watch?v=ke5KpqcoiIU)
 - freeCodeCamp.org: [Godot Game Development – Crash Course for Beginners](https://www.youtube.com/watch?v=S8lMTwSRoRg)
