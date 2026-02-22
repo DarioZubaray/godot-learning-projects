@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmsc3g5pgrdh8"]
+
+[ext_resource type="Script" uid="uid://cmqlu7jc1koo7" path="res://scenes/scripts/main.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://yl16duuis7p" path="res://scenes/board.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://byhxyjym5ix56" path="res://scenes/circle.tscn" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://unmprbd3xr2e" path="res://scenes/cross.tscn" id="3_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://ch0wfd3te8uy4" path="res://scenes/game_over_menu.tscn" id="5_tbgi4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
+bg_color = Color(0, 0.6666667, 0.8039216, 1)
+border_width_left = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0wfyh")
+circle_scene = ExtResource("2_jyhfs")
+cross_scene = ExtResource("3_tbgi4")
+
+[node name="Board" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(300, 300)
+
+[node name="SizePanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(300, 600)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jyhfs")
+
+[node name="PlayerLabel" type="Label" parent="SizePanel"]
+layout_mode = 1
+offset_top = 120.0
+offset_right = 300.0
+offset_bottom = 187.0
+theme_override_font_sizes/font_size = 40
+text = "Next Player:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerPanel" type="Panel" parent="."]
+offset_left = 650.0
+offset_top = 200.0
+offset_right = 850.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbgi4")
+
+[node name="GameOverMenu" parent="." instance=ExtResource("5_tbgi4")]
+process_mode = 2
+
+[connection signal="restart" from="GameOverMenu" to="." method="_on_game_over_menu_restart"]
