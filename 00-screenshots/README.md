@@ -28,3 +28,8 @@ _Another platformer follow Brackeys's youtube tutorial._
 #### 3D Demo
 ![07-Brackeys-3demo.png](/00-screenshots/07-Brackeys-3demo.png)
 _A simple first person game in 3D_
+
+
+### Foxy Platformer
+![08-foxy-freecodecamp.png](/00-screenshots/08-foxy-freecodecamp.png)
+_yet another platformer from youtube_
