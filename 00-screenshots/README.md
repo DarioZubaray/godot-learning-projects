@@ -30,6 +30,10 @@ _Another platformer follow Brackeys's youtube tutorial._
 _A simple first person game in 3D_
 
 
+### Tic Tac Toe
+![08-Tictactoe.png](/00-screenshots/08-Tictactoe.png)
+_crosses and circles in a row_
+
 ### Foxy Platformer
-![08-foxy-freecodecamp.png](/00-screenshots/08-foxy-freecodecamp.png)
+![09-foxy-freecodecamp.png](/00-screenshots/09-foxy-freecodecamp.png)
 _yet another platformer from youtube_
