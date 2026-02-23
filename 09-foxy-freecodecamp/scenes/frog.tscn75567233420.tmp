@@ -1,0 +1,112 @@
+[gd_scene load_steps=18 format=3 uid="uid://dig6mxadustgq"]
+
+[ext_resource type="Texture2D" uid="uid://dbseswlehlv46" path="res://assets/sunnyLand/Characters/Enemies and NPC/frog/Sprites/idle/frog-idle-1.png" id="1_4ifle"]
+[ext_resource type="Script" uid="uid://binimtuxyg873" path="res://scripts/frog.gd" id="1_ycnbg"]
+[ext_resource type="Texture2D" uid="uid://cjkish37pnq4m" path="res://assets/sunnyLand/Props Items and VFX/Sunnyland FX/Spritesheets/enemy-deadth.png" id="2_eqhdc"]
+[ext_resource type="Texture2D" uid="uid://cp3qoqpvs4jx0" path="res://assets/sunnyLand/Characters/Enemies and NPC/frog/Sprites/idle/frog-idle-2.png" id="2_uu7fg"]
+[ext_resource type="Texture2D" uid="uid://bhasc0kj53rhi" path="res://assets/sunnyLand/Characters/Enemies and NPC/frog/Sprites/idle/frog-idle-3.png" id="3_ycnbg"]
+[ext_resource type="Texture2D" uid="uid://dy87xqldlik7f" path="res://assets/sunnyLand/Characters/Enemies and NPC/frog/Sprites/idle/frog-idle-4.png" id="4_eqhdc"]
+[ext_resource type="Texture2D" uid="uid://2bvdyhbgkm4q" path="res://assets/sunnyLand/Characters/Enemies and NPC/frog/Sprites/jump/frog-jump-1.png" id="5_4au2m"]
+[ext_resource type="Texture2D" uid="uid://cl84wkj1ixlk" path="res://assets/sunnyLand/Characters/Enemies and NPC/frog/Sprites/jump/frog-jump-2.png" id="6_wiiuq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycnbg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4au2m"]
+atlas = ExtResource("2_eqhdc")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wiiuq"]
+atlas = ExtResource("2_eqhdc")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8yr8"]
+atlas = ExtResource("2_eqhdc")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mokc4"]
+atlas = ExtResource("2_eqhdc")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pjqi"]
+atlas = ExtResource("2_eqhdc")
+region = Rect2(160, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aq02"]
+atlas = ExtResource("2_eqhdc")
+region = Rect2(200, 0, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mokc4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4au2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wiiuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8yr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mokc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pjqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2aq02")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4ifle")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_uu7fg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ycnbg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_eqhdc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4au2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wiiuq")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eqhdc"]
+radius = 148.08444
+
+[node name="Frog" type="CharacterBody2D"]
+script = ExtResource("1_ycnbg")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ycnbg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mokc4")
+animation = &"idle"
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("CircleShape2D_eqhdc")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
