@@ -37,3 +37,7 @@ _crosses and circles in a row_
 ### Foxy Platformer
 ![09-foxy-freecodecamp.png](/00-screenshots/09-foxy-freecodecamp.png)
 _yet another platformer from youtube_
+
+### Flappy Plane
+![10-Flappy-plane.png](/00-screenshots/10-Flappy-plane.png)
+_A clone from a adictive cellphone game_
