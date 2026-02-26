@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqdh0htcffxjd"]
+
+[ext_resource type="PackedScene" uid="uid://dgld0cu7qsb5v" path="res://scenes/cashier/cashier.tscn" id="1_8noaa"]
+[ext_resource type="Script" uid="uid://xlhc68d2o6w" path="res://scenes/customer/customer.gd" id="2_duem0"]
+[ext_resource type="Texture2D" uid="uid://cjsb0s7oookt6" path="res://assets/Sprites/UI/circle.png" id="3_k1bqq"]
+[ext_resource type="Texture2D" uid="uid://cpvbujssle2ud" path="res://assets/Sprites/UI/Coffee.png" id="4_6bdyt"]
+[ext_resource type="FontFile" uid="uid://due6jbyye53ld" path="res://assets/Fonts/font_score.ttf" id="5_jy5aj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lu5oa"]
+font = ExtResource("5_jy5aj")
+font_size = 36
+font_color = Color(0, 0, 0, 1)
+
+[node name="Customer" instance=ExtResource("1_8noaa")]
+script = ExtResource("2_duem0")
+
+[node name="Body" parent="Visuals" index="1"]
+unique_name_in_owner = true
+
+[node name="Face" parent="Visuals" index="2"]
+unique_name_in_owner = true
+
+[node name="HandLeft" parent="Visuals" index="3"]
+unique_name_in_owner = true
+
+[node name="HandRight" parent="Visuals" index="4"]
+unique_name_in_owner = true
+
+[node name="ItemBox" type="Control" parent="." index="2"]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -140.0
+offset_top = -140.0
+offset_right = -40.0
+offset_bottom = -40.0
+
+[node name="Background" type="TextureRect" parent="ItemBox" index="0"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_k1bqq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemImage" type="TextureRect" parent="ItemBox/Background" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 16.0
+offset_right = 65.0
+offset_bottom = 76.0
+texture = ExtResource("4_6bdyt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemLabel" type="Label" parent="ItemBox/Background" index="1"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 64.0
+offset_top = 42.0
+offset_right = 104.0
+offset_bottom = 79.0
+text = "3"
+label_settings = SubResource("LabelSettings_lu5oa")

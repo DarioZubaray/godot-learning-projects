@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dtj0vy7pyjb21"]
+
+[ext_resource type="Script" uid="uid://cuc726sxtmxhv" path="res://data/item.gd" id="1_qtu6f"]
+[ext_resource type="Texture2D" uid="uid://cpvbujssle2ud" path="res://assets/Sprites/UI/Coffee.png" id="2_23krl"]
+
+[resource]
+script = ExtResource("1_qtu6f")
+id = "coffee"
+sprite = ExtResource("2_23krl")
+cook_time_reduce_percentage = 0.8
+metadata/_custom_type_script = "uid://cuc726sxtmxhv"

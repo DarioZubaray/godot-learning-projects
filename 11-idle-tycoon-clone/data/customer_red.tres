@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CustomerData" load_steps=5 format=3 uid="uid://dcsubnkp2ckfd"]
+
+[ext_resource type="Script" uid="uid://dhb7liqtuhvr7" path="res://data/customer_data.gd" id="1_mkf2q"]
+[ext_resource type="Texture2D" uid="uid://dau1d0enqnj5v" path="res://assets/Sprites/Characters/red_body_circle.png" id="1_shyaw"]
+[ext_resource type="Texture2D" uid="uid://b5jk47et10yef" path="res://assets/Sprites/Characters/face_g.png" id="2_lxpwj"]
+[ext_resource type="Texture2D" uid="uid://bt2exgwat511a" path="res://assets/Sprites/Characters/red_hand_point.png" id="3_tbube"]
+
+[resource]
+script = ExtResource("1_mkf2q")
+body = ExtResource("1_shyaw")
+face = ExtResource("2_lxpwj")
+hand = ExtResource("3_tbube")
+metadata/_custom_type_script = "uid://dhb7liqtuhvr7"
