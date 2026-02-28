@@ -1,0 +1,92 @@
+extends CharacterBody2D
+class_name Player
+
+@export var max_speed := 180.0
+@export var jump_force := 450.0
+@export var max_jumps := 2
+@export var gravity := 1600.0
+
+@onready var visuals: Node2D = $Visuals
+@onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite2D
+@onready var ray_cast: RayCast2D = %RayCast2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var gpu_particles: GPUParticles2D = $Visuals/GPUParticles2D
+
+var jumps_left: int
+var move_direction := 1
+var can_move := true
+
+func _ready() -> void:
+	jumps_left = max_jumps
+
+func _physics_process(delta: float) -> void:
+	if not can_move:
+		return
+	
+	handle_movement()
+	handle_gravity(delta)
+	handle_wall_collision()
+	handle_jump_input()
+	
+	move_and_slide()
+
+func handle_movement() -> void:
+	velocity.x = move_direction * max_speed
+	if is_on_floor():
+		animated_sprite.play("run")
+		jumps_left = max_jumps
+		gpu_particles.show()
+
+func handle_gravity(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		gpu_particles.hide()
+
+func handle_wall_collision() -> void:
+	if not ray_cast.is_colliding():
+		return
+	
+	velocity.y = 50
+	jumps_left = max_jumps
+	animated_sprite.play("fall")
+	
+	if is_on_floor():
+		change_ditrection()
+
+func change_ditrection() -> void:
+	move_direction *= -1
+	visuals.scale.x *= -1
+
+func handle_jump_input() -> void:
+	if not Input.is_action_just_pressed("tap"):
+		return
+	
+	if ray_cast.is_colliding():
+		change_ditrection()
+		jump()
+	else:
+		jump()
+
+func jump() -> void:
+	if jumps_left <= 0:
+		return
+	
+	SoundManager.play_jump()
+	velocity.y = -jump_force
+	jumps_left -= 1
+	if jumps_left <=0:
+		animated_sprite.play("double_jump")
+	else:
+		animated_sprite.play("jump")
+
+func player_dead() -> void:
+	can_move = false
+	velocity = Vector2.ZERO
+	animated_sprite.play("dead")
+	collision_shape.set_deferred("disabled", true)
+
+func player_respawn() -> void:
+	animated_sprite.play("respawn")
+	await animated_sprite.animation_finished
+	can_move = true
+	collision_shape.set_deferred("disabled", false)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvod8uu3xb8pp"]
+
+[ext_resource type="Script" uid="uid://fcpjyihme2an" path="res://scenes/traps/spike_block.gd" id="1_qowo6"]
+[ext_resource type="Texture2D" uid="uid://b1wjmxwdgvywl" path="res://assets/Sprites/Traps/Rock Head/Idle.png" id="1_yos4f"]
+[ext_resource type="PackedScene" uid="uid://ud0kqesuu8mh" path="res://scenes/traps/spikes.tscn" id="2_qowo6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3854i"]
+size = Vector2(32, 32)
+
+[node name="SpikeBlock" type="StaticBody2D"]
+collision_layer = 2
+script = ExtResource("1_qowo6")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("1_yos4f")
+
+[node name="Spikes" parent="Visuals" instance=ExtResource("2_qowo6")]
+position = Vector2(-7, -24)
+
+[node name="Spikes2" parent="Visuals" instance=ExtResource("2_qowo6")]
+position = Vector2(8, -24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3854i")
