@@ -1,0 +1,222 @@
+[gd_scene load_steps=24 format=3 uid="uid://dlm71von2amdt"]
+
+[ext_resource type="Script" uid="uid://c2e3d5fcmloxk" path="res://scenes/game/game.gd" id="1_0sr1o"]
+[ext_resource type="PackedScene" uid="uid://dg1n2to4eln57" path="res://scenes/player/player.tscn" id="1_sul5r"]
+[ext_resource type="Texture2D" uid="uid://ubm1eqcoxtwx" path="res://assets/Sprites/Environment/ground2_white.png" id="2_kelw5"]
+[ext_resource type="Texture2D" uid="uid://drpmj5jkfv8o7" path="res://assets/Sprites/Extras/crosshair.png" id="3_kelw5"]
+[ext_resource type="Script" uid="uid://bf4v8e3h7fmt7" path="res://scenes/game/camera_2d.gd" id="4_uyinl"]
+[ext_resource type="AudioStream" uid="uid://c3h5mideq18id" path="res://assets/Sound/music.mp3" id="5_lfrn8"]
+[ext_resource type="PackedScene" uid="uid://12s0injnxbb0" path="res://scenes/extra/weapon_pickup.tscn" id="6_5i0tg"]
+[ext_resource type="Resource" uid="uid://dr1yr2c7e240k" path="res://data/weapon_pistol_1.tres" id="7_5jirj"]
+[ext_resource type="Resource" uid="uid://c0rnjxyyuhhwr" path="res://data/weapon_pistol_2.tres" id="8_vaxfo"]
+[ext_resource type="Resource" uid="uid://je2x4uydme4p" path="res://data/weapon_m4_1.tres" id="9_ftsea"]
+[ext_resource type="Resource" uid="uid://dyqrorvstr0me" path="res://data/weapon_m4_2.tres" id="10_otnwt"]
+[ext_resource type="Resource" uid="uid://d2bbqsxjosc4k" path="res://data/weapon_shotgun_1.tres" id="11_3xj4h"]
+[ext_resource type="Resource" uid="uid://db6ysoibocfch" path="res://data/weapon_shotgun_2.tres" id="12_5v6r0"]
+[ext_resource type="PackedScene" uid="uid://0fftwbycxcnt" path="res://scenes/managers/enemy_spawner.tscn" id="13_ftsea"]
+[ext_resource type="PackedScene" uid="uid://bvkb0t6g5pwhv" path="res://scenes/extra/rock.tscn" id="13_vaxfo"]
+[ext_resource type="FontFile" uid="uid://c4x0jidjvbcs3" path="res://assets/Fonts/kenpixel_mini_square.ttf" id="15_5v6r0"]
+[ext_resource type="Texture2D" uid="uid://d0ioacy2yuqsg" path="res://assets/Sprites/tile_coin.png" id="16_uyinl"]
+[ext_resource type="PackedScene" uid="uid://df5wxdh2s85bc" path="res://scenes/extra/coin.tscn" id="17_5v6r0"]
+[ext_resource type="Shader" uid="uid://bormdcrjvdab3" path="res://scenes/game/vignette.gdshader" id="18_10c2w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfrn8"]
+size = Vector2(6144, 40)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pg2xm"]
+font = ExtResource("15_5v6r0")
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_gc57s"]
+font = ExtResource("15_5v6r0")
+font_size = 85
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pg2xm"]
+shader = ExtResource("18_10c2w")
+shader_parameter/outerRadius = 1.8000000855
+shader_parameter/MainAlpha = 0.800000038
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_0sr1o")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.58431375, 0.56078434, 0.7647059, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("2_kelw5")
+
+[node name="Player" parent="." instance=ExtResource("1_sul5r")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.65, 0.65)
+limit_left = -3072
+limit_top = -3072
+limit_right = 3072
+limit_bottom = 3072
+script = ExtResource("4_uyinl")
+shake_strength = 0.15
+
+[node name="Crosshair" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_kelw5")
+
+[node name="Border" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Border"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border/StaticBody2D"]
+position = Vector2(0, 3092)
+shape = SubResource("RectangleShape2D_lfrn8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border/StaticBody2D"]
+position = Vector2(0, -3092)
+shape = SubResource("RectangleShape2D_lfrn8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Border/StaticBody2D"]
+position = Vector2(3092, 0)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_lfrn8")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Border/StaticBody2D"]
+position = Vector2(-3092, 0)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_lfrn8")
+
+[node name="Weapons" type="Node2D" parent="."]
+position = Vector2(151, 0)
+
+[node name="WeaponPickup6" parent="Weapons" instance=ExtResource("6_5i0tg")]
+position = Vector2(-900, 0)
+weapon_data = ExtResource("7_5jirj")
+
+[node name="WeaponPickup5" parent="Weapons" instance=ExtResource("6_5i0tg")]
+position = Vector2(-600, 0)
+weapon_data = ExtResource("8_vaxfo")
+
+[node name="WeaponPickup4" parent="Weapons" instance=ExtResource("6_5i0tg")]
+position = Vector2(-300, 0)
+weapon_data = ExtResource("9_ftsea")
+
+[node name="WeaponPickup" parent="Weapons" instance=ExtResource("6_5i0tg")]
+weapon_data = ExtResource("10_otnwt")
+
+[node name="WeaponPickup2" parent="Weapons" instance=ExtResource("6_5i0tg")]
+position = Vector2(300, 0)
+weapon_data = ExtResource("11_3xj4h")
+
+[node name="WeaponPickup3" parent="Weapons" instance=ExtResource("6_5i0tg")]
+position = Vector2(600, 0)
+weapon_data = ExtResource("12_5v6r0")
+
+[node name="Rocks" type="Node2D" parent="."]
+
+[node name="Rock" parent="Rocks" instance=ExtResource("13_vaxfo")]
+position = Vector2(-1527, -670)
+
+[node name="Rock2" parent="Rocks" instance=ExtResource("13_vaxfo")]
+position = Vector2(-1300, 1763)
+
+[node name="Rock3" parent="Rocks" instance=ExtResource("13_vaxfo")]
+position = Vector2(611, 2531)
+
+[node name="Rock4" parent="Rocks" instance=ExtResource("13_vaxfo")]
+position = Vector2(2148, 1379)
+
+[node name="Rock5" parent="Rocks" instance=ExtResource("13_vaxfo")]
+position = Vector2(2690, -79)
+
+[node name="Rock6" parent="Rocks" instance=ExtResource("13_vaxfo")]
+position = Vector2(-659, -1310)
+
+[node name="Rock7" parent="Rocks" instance=ExtResource("13_vaxfo")]
+position = Vector2(-2068, -2659)
+
+[node name="Rock8" parent="Rocks" instance=ExtResource("13_vaxfo")]
+position = Vector2(1379, -2511)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("13_ftsea")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_lfrn8")
+autoplay = true
+bus = &"Music"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WaveLabel" type="Label" parent="CanvasLayer/GameUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -317.0
+offset_top = 20.0
+offset_right = 317.0
+offset_bottom = 225.0
+grow_horizontal = 2
+text = "new wave
+in"
+label_settings = SubResource("LabelSettings_pg2xm")
+horizontal_alignment = 1
+
+[node name="EnemyCountLabel" type="Label" parent="CanvasLayer/GameUI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -317.0
+offset_top = 20.0
+offset_right = 317.0
+offset_bottom = 225.0
+grow_horizontal = 2
+text = "enemy : 5"
+label_settings = SubResource("LabelSettings_pg2xm")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 40.0
+offset_right = 394.0
+offset_bottom = 140.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("16_uyinl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinsLabel" type="Label" parent="CanvasLayer/GameUI/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = " 100"
+label_settings = SubResource("LabelSettings_gc57s")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_pg2xm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 7.0
+
+[node name="Coin" parent="." instance=ExtResource("17_5v6r0")]
+position = Vector2(0, 622)
+
+[connection signal="on_wave_completed" from="EnemySpawner" to="." method="_on_enemy_spawner_on_wave_completed"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

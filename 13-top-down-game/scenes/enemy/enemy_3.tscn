@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://frufv8nkypla"]
+
+[ext_resource type="PackedScene" uid="uid://cp847ooo5fsde" path="res://scenes/enemy/base_enemy.tscn" id="1_44gae"]
+[ext_resource type="Texture2D" uid="uid://b0d6xe0sreis5" path="res://assets/Sprites/Shadow.png" id="2_wwu2i"]
+[ext_resource type="Texture2D" uid="uid://c0wwc6ukoe6ca" path="res://assets/Sprites/Entities/Enemy 3/fly_1.png" id="3_y5qon"]
+[ext_resource type="Texture2D" uid="uid://ckrkjtgj6ncub" path="res://assets/Sprites/Entities/Enemy 3/fly_5.png" id="4_oqadk"]
+[ext_resource type="Texture2D" uid="uid://b84ywbjrox8jm" path="res://assets/Sprites/Entities/Enemy 3/fly_0.png" id="5_mibo2"]
+[ext_resource type="Texture2D" uid="uid://0854frjae20" path="res://assets/Sprites/Entities/Enemy 3/fly_2.png" id="6_m2om0"]
+[ext_resource type="Texture2D" uid="uid://dteqeyh64480n" path="res://assets/Sprites/Entities/Enemy 3/fly_3.png" id="7_11x1n"]
+[ext_resource type="Texture2D" uid="uid://bk5kyqb2g3emo" path="res://assets/Sprites/Entities/Enemy 3/fly_4.png" id="8_510uq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kd8a4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_y5qon")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oqadk")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_mibo2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y5qon")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_m2om0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_11x1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_510uq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oqadk")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ov25p"]
+radius = 68.06615
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_44gae"]
+radius = 153.1176
+
+[node name="Enemy_3" instance=ExtResource("1_44gae")]
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(0, 259)
+texture = ExtResource("2_wwu2i")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_kd8a4")
+animation = &"walk"
+autoplay = "walk"
+frame = 3
+frame_progress = 0.5913414
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, 100)
+shape = SubResource("CircleShape2D_ov25p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" index="0"]
+position = Vector2(0, 101)
+shape = SubResource("CircleShape2D_44gae")
+
+[node name="HealthBar" parent="." index="5"]
+offset_top = -10.0
+offset_bottom = -10.0

@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsef0yppvpgma"]
+
+[ext_resource type="PackedScene" uid="uid://ded3wd5pg0u2e" path="res://scenes/bullet/single_bullet.tscn" id="1_ok4ht"]
+[ext_resource type="Texture2D" uid="uid://b6irhpunowl8a" path="res://assets/Sprites/Extras/bullet.png" id="2_u2ovo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdd5t"]
+radius = 624.8265
+
+[node name="ShotgunBullet" instance=ExtResource("1_ok4ht")]
+
+[node name="Shadow" parent="." index="0"]
+position = Vector2(0, 253)
+
+[node name="Area2D2" type="Area2D" parent="." index="2"]
+position = Vector2(0, 120)
+scale = Vector2(0.07, 0.07)
+collision_layer = 0
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D2" index="0"]
+texture = ExtResource("2_u2ovo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" index="1"]
+shape = SubResource("CircleShape2D_tdd5t")
+
+[node name="Area2D3" type="Area2D" parent="." index="3"]
+position = Vector2(0, -120)
+scale = Vector2(0.07, 0.07)
+collision_layer = 0
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D3" index="0"]
+texture = ExtResource("2_u2ovo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3" index="1"]
+shape = SubResource("CircleShape2D_tdd5t")
+
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D3" to="." method="_on_area_2d_body_entered"]
