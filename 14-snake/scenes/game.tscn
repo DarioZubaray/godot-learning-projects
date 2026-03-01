@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bhw401r1k3es4"]
+
+[ext_resource type="Script" uid="uid://ocfktw6k3bbk" path="res://scenes/game.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://pgdo7thcon86" path="res://scenes/snake_segment.tscn" id="2_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://dp5qir4pc858g" path="res://assets/bg.png" id="2_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://baxa55cooksqr" path="res://scenes/hud.tscn" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://c10aj8gmw5f3h" path="res://assets/apple.png" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://cisrlnbwocqcp" path="res://scenes/game_over_menu.tscn" id="6_p57ef"]
+
+[node name="Game" type="Node" unique_id=1926030581]
+script = ExtResource("1_yqjtg")
+snake_segment = ExtResource("2_lbhrr")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1448396314]
+position = Vector2(500, 550)
+texture = ExtResource("2_lnu2h")
+
+[node name="Hud" parent="." unique_id=1742187118 instance=ExtResource("3_lnu2h")]
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=1975389235]
+wait_time = 0.1
+
+[node name="Food" type="Sprite2D" parent="." unique_id=94009954]
+texture = ExtResource("5_iywne")
+offset = Vector2(25, 25)
+
+[node name="GameOverMenu" parent="." unique_id=1509233285 instance=ExtResource("6_p57ef")]
+process_mode = 2
+visible = false
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="on_restart_game" from="GameOverMenu" to="." method="_on_game_over_menu_on_restart_game"]
