@@ -6,11 +6,13 @@ Links:
 
 - [godotengine.org](https://godotengine.org/)
 - [Godot shaders](https://godotshaders.com/)
+- [Poly Heaven - HDRI](https://polyhaven.com/hdris)
 
 Courses:
 
 - [Godot desde cero: Aprende a programar y crear videojuegos 2D](https://www.udemy.com/course/godot-desde-cero/)
 - [Máster de videojuegos en 2D con Godot 4 y GDScript](https://www.udemy.com/course/master-de-videojuegos-en-2d-con-godot-4-y-gdscript/)
+- [Godot 101 – Game Engine Foundations](https://academy.zenva.com/product/godot-101-game-engine-foundations/)
 
 Tutorials:
 
