@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2vpt7hx8jk6d"]
+
+[ext_resource type="SpriteFrames" uid="uid://ds0qwpdrpueqs" path="res://escenas/personaje/sprite_frames_personaje.tres" id="1_jqp8e"]
+[ext_resource type="Script" uid="uid://bcuooarj12gmm" path="res://escenas/personaje/personaje.gd" id="1_yv5yb"]
+[ext_resource type="Material" uid="uid://clryvjqal3o5f" path="res://escenas/personaje/material_personaje_rojo.tres" id="2_wky4x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yv5yb"]
+size = Vector2(14, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wky4x"]
+size = Vector2(14, 16)
+
+[node name="Personaje" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_yv5yb")
+material_personaje_rojo = ExtResource("2_wky4x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_jqp8e")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_yv5yb")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_wky4x")
+debug_color = Color(0.9937492, 0, 0.23984057, 0.41960785)

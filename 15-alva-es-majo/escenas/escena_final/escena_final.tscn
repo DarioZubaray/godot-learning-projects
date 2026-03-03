@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm51sc5gcxon2"]
+
+[ext_resource type="Theme" uid="uid://0kxj8erlhit6" path="res://temas/boton_menu_principal.tres" id="1_0jc1b"]
+[ext_resource type="Script" uid="uid://bqvq714iv1riv" path="res://escenas/menu_principal/boton_salir.gd" id="2_b5myx"]
+
+[node name="EscenaFinal" type="Node2D"]
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = -20.0
+offset_right = 151.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+text = "¡Felicidades!"
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+text = "¡Has ganado!"
+
+[node name="Salir" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_0jc1b")
+theme_override_font_sizes/font_size = 26
+text = "Salir"
+script = ExtResource("2_b5myx")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bscqnch1t8sqq"]
+
+[ext_resource type="Script" uid="uid://dxmqa6tjmepdq" path="res://escenas/controlador_partida/controlador_partida.gd" id="1_rbj2b"]
+[ext_resource type="Resource" uid="uid://cel5sx4dpk5iv" path="res://recursos/partida.tres" id="2_ehtdr"]
+
+[node name="ControladorPartida" type="Node"]
+script = ExtResource("1_rbj2b")
+partida = ExtResource("2_ehtdr")

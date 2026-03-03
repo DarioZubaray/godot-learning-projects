@@ -7,6 +7,7 @@ Links:
 - [godotengine.org](https://godotengine.org/)
 - [Godot shaders](https://godotshaders.com/)
 - [Poly Heaven - HDRI](https://polyhaven.com/hdris)
+- [itch.io - assets](https://itch.io/game-assets)
 
 Courses:
 

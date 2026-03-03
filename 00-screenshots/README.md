@@ -70,7 +70,13 @@ _Base on the mobile game: leap day_
 _A first topdown shooter with some vfx particles_
 
 
-### Topdown Shooter
+### Snake 🐍
 ![14-snake.png](/00-screenshots/14-snake.png)
 
 _A classic nokia phone game_
+
+
+### Alva es majo
+![15-alva-es-majo.png](/00-screenshots/15-alva-es-majo.png)
+
+_Godot tutorial by alva majo, a nice guy_
