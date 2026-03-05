@@ -33,3 +33,5 @@ Tutorials:
     - [Beginner Godot Tutorial - Make a Snake Game in 10 Minutes!](https://www.youtube.com/watch?v=DlRP-UBR-2A)
 - Alva Majo:
     - [Godot para retrasados [Tutorial]](https://www.youtube.com/watch?v=eQ_HBvtdoiU&t=195s)
+- swydev:
+    - [Make A Video Game in 30 Minutes | Quick Godot 4 Tutorial](https://www.youtube.com/watch?v=IYjRhcOCFDo&t=10s)
