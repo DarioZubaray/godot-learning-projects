@@ -5,11 +5,14 @@ extends CharacterBody2D
 @export var gravity: float
 @export var coyote_time: float
 @export var jump_buffer_time: float
+@export var corner_correction_amount: float
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var ray_cast_left: RayCast2D = $RayCastLeft
+@onready var ray_cast_right: RayCast2D = $RayCastRight
 
 var is_facing_right = true
 var coyote_timer := 0.0
@@ -51,12 +54,29 @@ func jump(delta: float) -> void:
 		coyote_timer = 0
 		jump_buffer_timer = 0
 		AudioManager.play_sfx(audio_stream_player_2d, AudioManager.JUMP)
+	
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		correct_corner()
 
 func move_x() -> void:
 	var input_axis := Input.get_axis("left", "right")
 	velocity.x = input_axis * speed
+
+func correct_corner() -> void:
+	if is_on_wall():
+		return
+	
+	if ray_cast_left.is_colliding() and not ray_cast_right.is_colliding():
+		if is_facing_right:
+			position.x += corner_correction_amount
+		else:
+			position.x -= corner_correction_amount
+	elif ray_cast_right.is_colliding() and not ray_cast_left.is_colliding():
+		if is_facing_right:
+			position.x -= corner_correction_amount
+		else:
+			position.x += corner_correction_amount
 
 func flip() -> void:
 	if (is_facing_right and velocity.x < 0) or (not is_facing_right and velocity.x > 0):
