@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bup6y8x6i7duu"]
+[gd_resource type="Theme" format=3 uid="uid://bup6y8x6i7duu"]
 
 [ext_resource type="FontFile" uid="uid://css5msf4tuwwb" path="res://assets/fonts/BD_Cartoon_Shout.ttf" id="1_xpo83"]
 [ext_resource type="Texture2D" uid="uid://c8fe4ft2f78u0" path="res://assets/sprites/ui/button-highlight.png" id="2_4mikn"]

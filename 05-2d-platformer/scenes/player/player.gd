@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed: float
 @export var jump_speed: float
 @export var gravity: float
+@export var coyote_time: float
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -10,6 +11,7 @@ extends CharacterBody2D
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var is_facing_right = true
+var coyote_timer := 0.0
 
 func _ready() -> void:
 	SignalManager.level_completed.connect(on_level_completed)
@@ -34,8 +36,14 @@ func update_animations() -> void:
 			animated_sprite_2d.play("fall")
 
 func jump(delta: float) -> void:
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if is_on_floor():
+		coyote_timer = coyote_time
+	else:
+		coyote_timer -= delta
+	
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_timer > 0):
 		velocity.y = -jump_speed
+		coyote_timer = 0
 		AudioManager.play_sfx(audio_stream_player_2d, AudioManager.JUMP)
 	if not is_on_floor():
 		velocity.y += gravity * delta
