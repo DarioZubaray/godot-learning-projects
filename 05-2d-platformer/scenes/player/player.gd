@@ -67,16 +67,13 @@ func correct_corner() -> void:
 	if is_on_wall():
 		return
 	
-	if ray_cast_left.is_colliding() and not ray_cast_right.is_colliding():
-		if is_facing_right:
-			position.x += corner_correction_amount
-		else:
-			position.x -= corner_correction_amount
-	elif ray_cast_right.is_colliding() and not ray_cast_left.is_colliding():
-		if is_facing_right:
-			position.x -= corner_correction_amount
-		else:
-			position.x += corner_correction_amount
+	# Obtenemos un valor de -1, 0 o 1 basado en qué rayo colisiona
+	var collision_dir = int(ray_cast_right.is_colliding()) - int(ray_cast_left.is_colliding())
+	
+	if collision_dir != 0:
+		# Si colisiona el derecho, empuja a la izquierda (-1)
+		# Si colisiona el izquierdo, empuja a la derecha (1)
+		position.x -= collision_dir * corner_correction_amount
 
 func flip() -> void:
 	if (is_facing_right and velocity.x < 0) or (not is_facing_right and velocity.x > 0):
