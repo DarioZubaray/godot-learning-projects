@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://b3upubjmnk1eq"]
+
+[ext_resource type="Texture2D" uid="uid://djjponsttwqfs" path="res://Assets/GemBg.png" id="1_mv0hc"]
+[ext_resource type="Script" uid="uid://dd37yws3ngm1v" path="res://Scenes/Game/game.gd" id="1_qikps"]
+[ext_resource type="PackedScene" uid="uid://bx7c4mo02v7sl" path="res://Scenes/Fox/fox.tscn" id="3_qikps"]
+[ext_resource type="FontFile" uid="uid://d2nlwt14impgw" path="res://Assets/LuckiestGuy-Regular.ttf" id="4_i1e5p"]
+[ext_resource type="AudioStream" uid="uid://rxwcie4b6wbb" path="res://Assets/tetris.mp3" id="5_ciybh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ciybh"]
+font = ExtResource("4_i1e5p")
+font_size = 50
+outline_size = 4
+outline_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
+shadow_size = 7
+shadow_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_flgk0"]
+font = ExtResource("4_i1e5p")
+font_size = 160
+outline_size = 4
+outline_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
+shadow_size = 7
+shadow_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
+
+[node name="Game" type="Node2D" unique_id=1577966731]
+process_mode = 3
+script = ExtResource("1_qikps")
+
+[node name="GemBg" type="Sprite2D" parent="." unique_id=3982367]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_mv0hc")
+centered = false
+
+[node name="Label" type="Label" parent="." unique_id=168850649]
+z_index = 9
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 90.0
+offset_bottom = 73.0
+text = "0000"
+label_settings = SubResource("LabelSettings_ciybh")
+
+[node name="GameOverLabel" type="Label" parent="." unique_id=759776276]
+visible = false
+z_index = 9
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 165.0
+offset_top = 335.0
+offset_right = 983.0
+offset_bottom = 496.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GameOver"
+label_settings = SubResource("LabelSettings_flgk0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1260081216]
+stream = ExtResource("5_ciybh")
+volume_db = -7.5
+autoplay = true
+
+[node name="Pausable" type="Node" parent="." unique_id=2062311126]
+process_mode = 1
+
+[node name="Fox" parent="Pausable" unique_id=225715771 instance=ExtResource("3_qikps")]
+z_index = 1
+position = Vector2(607, 558)
+
+[node name="Timer" type="Timer" parent="Pausable" unique_id=760643720]
+wait_time = 2.0
+autostart = true
