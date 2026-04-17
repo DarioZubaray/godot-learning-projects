@@ -86,3 +86,9 @@ _Godot tutorial by alva majo, a nice guy_
 ![16-breakout.png](/00-screenshots/16-breakout.png)
 
 _A classic Breakout/Brick Breaker arcade game with procedural levels and increasing difficulty_
+
+
+### Dice catcher
+![17-dice-catcher.png](/00-screenshots/17-dice-catcher.png)
+
+_A simple game to start a fancy new tutorial_
