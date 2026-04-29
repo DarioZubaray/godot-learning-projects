@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d3ua3exktifu6"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_exqad"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qfl2k"]
+
+[node name="Barrier" type="StaticBody2D" unique_id=461333948]
+
+[node name="Upper" type="CollisionShape2D" parent="." unique_id=465011403]
+position = Vector2(1, -10)
+shape = SubResource("WorldBoundaryShape2D_exqad")
+
+[node name="Lower" type="CollisionShape2D" parent="." unique_id=1290234957]
+position = Vector2(0, 864)
+shape = SubResource("WorldBoundaryShape2D_qfl2k")

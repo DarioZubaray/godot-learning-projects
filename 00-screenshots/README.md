@@ -92,3 +92,9 @@ _A classic Breakout/Brick Breaker arcade game with procedural levels and increas
 ![17-dice-catcher.png](/00-screenshots/17-dice-catcher.png)
 
 _A simple game to start a fancy new tutorial_
+
+
+### Tappy plane
+![18-tappy-plane.png](/00-screenshots/18-tappy-plane.png)
+
+_More flappy bird clones_

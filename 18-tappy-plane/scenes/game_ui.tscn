@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://x5xgcv6hosrv"]
+
+[ext_resource type="LabelSettings" uid="uid://d4hsudqpknvh1" path="res://resources/luckiest_guy_red_32.tres" id="1_rns2u"]
+[ext_resource type="Script" uid="uid://dlnuim8agpmuw" path="res://scenes/game_ui.gd" id="1_u001w"]
+[ext_resource type="FontFile" uid="uid://chwcyhpf3b2c7" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_u001w"]
+[ext_resource type="AudioStream" uid="uid://nq8onf08g5fr" path="res://assets/audio/game_over.wav" id="4_u2dgd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u2dgd"]
+font = ExtResource("2_u001w")
+font_size = 80
+font_color = Color(1, 0, 0, 1)
+outline_size = 8
+outline_color = Color(0.67230505, 1.7688051e-06, 6.256998e-07, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bt76a"]
+font = ExtResource("2_u001w")
+font_size = 64
+font_color = Color(0, 0.6423651, 0.30279446, 1)
+outline_size = 8
+outline_color = Color(0.22735336, 0.40749067, 0, 1)
+
+[node name="GameUI" type="Control" unique_id=546758799]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u001w")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=578362681]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer" unique_id=1983764834]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "000"
+label_settings = ExtResource("1_rns2u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="MarginContainer" unique_id=1101165897]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Over"
+label_settings = SubResource("LabelSettings_u2dgd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PressSpaceLabel" type="Label" parent="MarginContainer" unique_id=1957548499]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press Space"
+label_settings = SubResource("LabelSettings_bt76a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1597027713]
+stream = ExtResource("4_u2dgd")
+
+[node name="Timer" type="Timer" parent="." unique_id=1448367367]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

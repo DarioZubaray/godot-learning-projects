@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://uwvh47c3o5si"]
+
+[ext_resource type="Script" uid="uid://dlbdrxvegajk0" path="res://scenes/game.gd" id="1_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://bw1haim03jqov" path="res://assets/background/rocks_2.png" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://c08akj23udjty" path="res://scenes/paralax_bg.tscn" id="2_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cpektfhr78eew" path="res://scenes/tappy.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://d3ua3exktifu6" path="res://scenes/barrier.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://x5xgcv6hosrv" path="res://scenes/game_ui.tscn" id="5_iywne"]
+
+[node name="Game" type="Node" unique_id=901765840]
+script = ExtResource("1_lbhrr")
+
+[node name="ParallaxBg" parent="." unique_id=1427328647 instance=ExtResource("2_p57ef")]
+scale = Vector2(0.79, 0.79)
+
+[node name="Rocks2" type="Sprite2D" parent="." unique_id=104706444]
+visible = false
+position = Vector2(262, 322)
+texture = ExtResource("1_uwrxv")
+
+[node name="Tappy" parent="." unique_id=1677726862 instance=ExtResource("2_yqjtg")]
+position = Vector2(76, 388)
+
+[node name="Barrier" parent="." unique_id=461333948 instance=ExtResource("3_lnu2h")]
+
+[node name="PipeHolder" type="Node" parent="." unique_id=2057060362]
+
+[node name="UpperSpawnMarker" type="Marker2D" parent="." unique_id=1891162391]
+position = Vector2(580, 280)
+
+[node name="LowerSpawnMarker" type="Marker2D" parent="." unique_id=1450339025]
+position = Vector2(580, 530)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1496332703]
+wait_time = 2.0
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2081202215]
+
+[node name="GameUI" parent="CanvasLayer" unique_id=546758799 instance=ExtResource("5_iywne")]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
