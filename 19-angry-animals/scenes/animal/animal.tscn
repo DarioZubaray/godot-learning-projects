@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://fw2n1qsjfs1v"]
+
+[ext_resource type="Script" uid="uid://mond8s4ldxa1" path="res://scripts/animal.gd" id="1_3c5tq"]
+[ext_resource type="Texture2D" uid="uid://x0dlkt8ioewe" path="res://icon.svg" id="1_3v7ex"]
+[ext_resource type="AudioStream" uid="uid://dcinsmx58hsop" path="res://assets/audio/stretch2.ogg" id="2_3c5tq"]
+[ext_resource type="Texture2D" uid="uid://htsyc2kq1est" path="res://assets/items/arrow.png" id="3_d7epe"]
+[ext_resource type="AudioStream" uid="uid://fr3g5bll4i48" path="res://assets/audio/catapult.ogg" id="3_ieass"]
+[ext_resource type="AudioStream" uid="uid://bk8g3nu8e084p" path="res://assets/audio/kick_wood.ogg" id="4_d7epe"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ieass"]
+bounce = 0.25
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brjsm"]
+radius = 19.026299
+
+[node name="Animal" type="RigidBody2D" unique_id=1397395352]
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_ieass")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_3c5tq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=508450308]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_3v7ex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1244523750]
+shape = SubResource("CircleShape2D_brjsm")
+
+[node name="ArrowSprite" type="Sprite2D" parent="." unique_id=484060854]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_d7epe")
+offset = Vector2(150, 0)
+
+[node name="Label" type="Label" parent="." unique_id=471073497]
+visible = false
+top_level = true
+offset_left = 12.0
+offset_top = 11.0
+offset_right = 155.0
+offset_bottom = 84.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 25
+text = "placeholder
+text"
+
+[node name="StreachSound" type="AudioStreamPlayer2D" parent="." unique_id=519238651]
+stream = ExtResource("2_3c5tq")
+
+[node name="LaunchSound" type="AudioStreamPlayer2D" parent="." unique_id=298512275]
+stream = ExtResource("3_ieass")
+
+[node name="KickSound" type="AudioStreamPlayer2D" parent="." unique_id=1563701863]
+stream = ExtResource("4_d7epe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]

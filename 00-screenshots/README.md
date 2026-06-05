@@ -98,3 +98,8 @@ _A simple game to start a fancy new tutorial_
 ![18-tappy-plane.png](/00-screenshots/18-tappy-plane.png)
 
 _More flappy bird clones_
+
+### Angry animals
+![19-angry_animals.jpg](/00-screenshots/19-angry_animals.jpg)
+
+_More flappy bird clones_

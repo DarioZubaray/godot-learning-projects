@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cs3b2k4n4klog"]
+
+[ext_resource type="PackedScene" uid="uid://dp4fdully6dx6" path="res://scenes/levels/level_base.tscn" id="1_h23n6"]
+[ext_resource type="PackedScene" uid="uid://hqpcyt1rw0ie" path="res://scenes/cup/cup.tscn" id="2_uwxec"]
+
+[node name="Level3" unique_id=94545224 instance=ExtResource("1_h23n6")]
+
+[node name="Cup" parent="." index="4" unique_id=998298923 instance=ExtResource("2_uwxec")]
+position = Vector2(434, 479)
+
+[node name="Cup2" parent="." index="5" unique_id=417416123 instance=ExtResource("2_uwxec")]
+position = Vector2(625, 278)
+
+[node name="Cup3" parent="." index="6" unique_id=449444988 instance=ExtResource("2_uwxec")]
+position = Vector2(865, 467)

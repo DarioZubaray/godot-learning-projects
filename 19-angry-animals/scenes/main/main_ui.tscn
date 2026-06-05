@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://c764enb4bftpg"]
+
+[ext_resource type="Script" uid="uid://k6w6875aevrt" path="res://scripts/main_ui.gd" id="1_liiyl"]
+[ext_resource type="LabelSettings" uid="uid://cki115s0v44ie" path="res://resources/luckiest_guy-32-gray.tres" id="2_4d1g3"]
+[ext_resource type="LabelSettings" uid="uid://bgmjiy0xe7jrp" path="res://resources/luckiest_guy-96-light_blue.tres" id="3_8lk8p"]
+[ext_resource type="FontFile" uid="uid://cmfxrrcifr2pn" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="4_fvluk"]
+[ext_resource type="AudioStream" uid="uid://4f15gll17vmv" path="res://assets/audio/jazzyfrenchy.mp3" id="5_hciid"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j6a7c"]
+font = ExtResource("4_fvluk")
+font_size = 48
+font_color = Color(0.35686275, 1, 1, 1)
+outline_size = 6
+outline_color = Color(0, 0.19883654, 0.19939521, 1)
+
+[node name="MainUI" type="Control" unique_id=1697409245]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_liiyl")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=772627462]
+layout_mode = 1
+offset_right = 220.0
+offset_bottom = 94.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1331185140]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+
+[node name="HBoxLevelContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=789797353]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxLevelContainer" unique_id=1402915992]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Level"
+label_settings = ExtResource("2_4d1g3")
+
+[node name="LevelNumberLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxLevelContainer" unique_id=1446932575]
+layout_mode = 2
+text = "99"
+label_settings = ExtResource("2_4d1g3")
+
+[node name="HBoxAttempContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=631149135]
+layout_mode = 2
+
+[node name="AttempLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxAttempContainer" unique_id=1147197621]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attemps"
+label_settings = ExtResource("2_4d1g3")
+
+[node name="AttempNumberLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxAttempContainer" unique_id=1330508377]
+layout_mode = 2
+text = "999"
+label_settings = ExtResource("2_4d1g3")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=102180801]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -406.5
+offset_top = -75.0
+offset_right = 406.5
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainerComplete" type="VBoxContainer" parent="CenterContainer" unique_id=571273356]
+layout_mode = 2
+
+[node name="LevelCompletedLabel" type="Label" parent="CenterContainer/VBoxContainerComplete" unique_id=1456820568]
+visible = false
+layout_mode = 2
+mouse_filter = 0
+text = "Level Completed!"
+label_settings = ExtResource("3_8lk8p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PressEscapeLabel" type="Label" parent="CenterContainer/VBoxContainerComplete" unique_id=622561922]
+visible = false
+layout_mode = 2
+mouse_filter = 0
+text = "Press Escape"
+label_settings = SubResource("LabelSettings_j6a7c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMusic" type="AudioStreamPlayer" parent="." unique_id=178034268]
+stream = ExtResource("5_hciid")
+parameters/looping = true
